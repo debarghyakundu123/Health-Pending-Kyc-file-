@@ -298,7 +298,7 @@ if st.session_state.get("mapping_done"):
         merged = merged[merged["IsDataPushed"] != 1]
 
         mask = merged["IsRejectRefundCase"] == 1
-        merged.loc[mask,["Type","Team"]] = ["Rejected in Process","CRT"]
+        merged.loc[mask,["Type","Team"]] = ["Rejected In Pre Issuance","CRT"]
 
         merged.drop(columns=["X"], errors="ignore", inplace=True)
         merged = merged.drop_duplicates("Leadid")
