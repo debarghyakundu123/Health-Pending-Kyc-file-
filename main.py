@@ -22,56 +22,38 @@ st.markdown("""
 # =========================
 # HEADER
 # =========================
-# =========================
-# HEADER (LOGO + TITLE - PREMIUM)
-# =========================
 st.markdown("""
 <style>
-.header-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.main-header {
+    text-align: center;
     padding: 10px 0;
 }
 
-.title-container {
-    display: flex;
-    flex-direction: column;
-}
-
 .main-title {
-    font-size: 38px;
+    font-size: 42px;
     font-weight: 800;
-    margin: 0;
+    margin-bottom: 5px;
 }
 
-.subtitle {
+.sub-title {
     font-size: 16px;
     color: #555;
-    margin-top: 4px;
+    margin-bottom: 8px;
 }
 
 .author {
     font-size: 14px;
     color: #888;
-    margin-top: 2px;
+    font-weight: 500;
 }
 </style>
+
+<div class="main-header">
+    <div class="main-title">📊 Automatic Health Pending KYC File Maker</div>
+    <div class="title">Merge • Transform • Analyze — without headaches</div>
+    <div class="title"><b> Built by ❤️ Debarghya Kundu</b> | PW81594</div>
+</div>
 """, unsafe_allow_html=True)
-
-col1, col2 = st.columns([1,6])
-
-with col1:
-    st.image("pblogo.png", width=110)
-
-with col2:
-    st.markdown("""
-    <div class="title-container">
-        <div class="main-title">📊 Health KYC File Engine</div>
-        <div class="subtitle">Merge • Transform • Analyze — without headaches</div>
-        <div class="author">Built by ❤️ <b>Debarghya Kundu</b> | PW81594</div>
-    </div>
-    """, unsafe_allow_html=True)
 
 st.divider()
 
