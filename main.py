@@ -104,7 +104,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     file1 = st.file_uploader("📄 CJ Pending File", type=["xlsx"])
-    file2 = st.file_uploader("📄 Data Push Status File", type=["csv"])
+    file2 = st.file_uploader("📄 Data Push Status File", type=["xlsx"])
 
 with col2:
     file3 = st.file_uploader("📄 Tech Remarks File", type=["xlsx"])
@@ -213,7 +213,7 @@ if st.session_state.get("mapping_done"):
     with st.spinner("Running pipeline..."):
 
         f1 = load_excel(file1, sheet1)
-        f2 = load_csv(file2)
+        f2 = load_excel(file2)
         f3 = load_excel(file3, sheet3)
         f4 = load_excel(file4, sheet4)
         f5 = load_excel(file5, sheet5)
