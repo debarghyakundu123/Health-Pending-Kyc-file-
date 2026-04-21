@@ -20,56 +20,58 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =========================
-# HEADER WITH LOGO
-# =========================
-col1, col2 = st.columns([1,6])
-
-with col1:
-    st.image("PBlogo.jpeg", width=100)
-
-with col2:
-    st.markdown("""
-    <div class="main-header">
-        <div class="main-title">📊 Automatic Health Pending KYC File Maker</div>
-        <div class="title">Merge • Transform • Analyze — without headaches</div>
-        <div class="title"><b> Built by ❤️ Debarghya Kundu</b> | PW81594</div>
-    </div>
-    """, unsafe_allow_html=True)
-# =========================
 # HEADER
+# =========================
+# =========================
+# HEADER (LOGO + TITLE - PREMIUM)
 # =========================
 st.markdown("""
 <style>
-.main-header {
-    text-align: center;
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
     padding: 10px 0;
 }
 
-.main-title {
-    font-size: 42px;
-    font-weight: 800;
-    margin-bottom: 5px;
+.title-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.sub-title {
+.main-title {
+    font-size: 38px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.subtitle {
     font-size: 16px;
     color: #555;
-    margin-bottom: 8px;
+    margin-top: 4px;
 }
 
 .author {
     font-size: 14px;
     color: #888;
-    font-weight: 500;
+    margin-top: 2px;
 }
 </style>
-
-<div class="main-header">
-    <div class="main-title">📊 Automatic Health Pending KYC File Maker</div>
-    <div class="title">Merge • Transform • Analyze — without headaches</div>
-    <div class="title">Built by <b>Debarghya Kundu</b> | PW81594</div>
-</div>
 """, unsafe_allow_html=True)
+
+col1, col2 = st.columns([1,6])
+
+with col1:
+    st.image("pblogo.png", width=110)
+
+with col2:
+    st.markdown("""
+    <div class="title-container">
+        <div class="main-title">📊 Health KYC File Engine</div>
+        <div class="subtitle">Merge • Transform • Analyze — without headaches</div>
+        <div class="author">Built by ❤️ <b>Debarghya Kundu</b> | PW81594</div>
+    </div>
+    """, unsafe_allow_html=True)
 
 st.divider()
 
