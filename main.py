@@ -1,11 +1,31 @@
 import streamlit as st
 import pandas as pd
-
+import base64
 # =========================
 # PAGE CONFIG
 # =========================
 st.set_page_config(page_title="Smart File Engine", layout="wide")
+# =========================
+# LOGO
+# =========================
 
+
+# Read video file
+video_file = open("download.mp4", "rb")
+video_bytes = video_file.read()
+video_base64 = base64.b64encode(video_bytes).decode()
+
+# Display as small logo video
+st.markdown(f"""
+<video id="logoVid" width="200" autoplay muted loop playsinline style="border-radius:10px;">
+    <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
+</video>
+
+<script>
+const vid = document.getElementById("logoVid");
+vid.playbackRate =8.0;  // 🔥 speed (1 = normal, 2 = 2x, 3 = 3x)
+</script>
+""", unsafe_allow_html=True)
 # =========================
 # STYLES
 # =========================
@@ -47,7 +67,6 @@ st.markdown("""
     font-weight: 500;
 }
 </style>
-st.image("pblogo.png", width=110)
 
 <div class="main-header">
     <div class="main-title">📊 Automatic Health Pending KYC File Maker</div>
