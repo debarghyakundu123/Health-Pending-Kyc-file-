@@ -25,14 +25,14 @@ st.markdown("""
 col1, col2 = st.columns([1,6])
 
 with col1:
-    st.image("pblogo.png", width=100)
+    st.image("PBlogo.jpeg", width=100)
 
 with col2:
     st.markdown("""
     <div class="main-header">
         <div class="main-title">📊 Automatic Health Pending KYC File Maker</div>
         <div class="title">Merge • Transform • Analyze — without headaches</div>
-        <div class="title">Built by <b>Debarghya Kundu</b> | PW81594</div>
+        <div class="title"><b> Built by ❤️ Debarghya Kundu</b> | PW81594</div>
     </div>
     """, unsafe_allow_html=True)
 # =========================
