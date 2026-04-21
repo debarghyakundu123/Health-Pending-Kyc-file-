@@ -143,16 +143,31 @@ st.divider()
 # =========================
 # STEP 2: SHEETS
 # =========================
-if all([file1, file3, file4, file5]):
+# =========================
+# STEP 2: SHEETS
+# =========================
+if all([file1, file2, file3, file4, file5]):
     st.markdown("### 🟡 Step 2: Select Sheets")
 
-    s1, s3, s4, s5 = st.columns(4)
+    s1, s2, s3, s4, s5 = st.columns(5)
 
-    sheet1 = s1.selectbox("CJ Pending File", get_sheets(file1))
-    sheet3 = s3.selectbox("Tech Remarks File", get_sheets(file3))
-    sheet4 = s4.selectbox("Data Push Pending File", get_sheets(file4))
-    sheet5 = s5.selectbox("Overall Pendency File", get_sheets(file5))
+    with s1:
+        sheet1 = st.selectbox("CJ Pending File", get_sheets(file1))
+
+    with s2:
+        sheet2 = st.selectbox("Data Push Status", get_sheets(file2))
+
+    with s3:
+        sheet3 = st.selectbox("Tech Remarks File", get_sheets(file3))
+
+    with s4:
+        sheet4 = st.selectbox("Data Push Pending File", get_sheets(file4))
+
+    with s5:
+        sheet5 = st.selectbox("Overall Pendency File", get_sheets(file5))
+
 else:
+    st.warning("⚠ Please upload all files to proceed")
     st.stop()
 
 st.divider()
@@ -174,6 +189,7 @@ if all([file1, file2, file3, file4, file5]):
     """)
 
     f1_temp = pd.read_excel(file1, sheet_name=sheet1, nrows=5)
+    f2_temp=pd.read_excel(file2, sheet_name= sheet2, nrows=5)
     f3_temp = pd.read_excel(file3, sheet_name=sheet3, nrows=5)
     f4_temp = pd.read_excel(file4, sheet_name=sheet4, nrows=5)
     f5_temp = pd.read_excel(file5, sheet_name=sheet5, nrows=5)
@@ -213,7 +229,7 @@ if st.session_state.get("mapping_done"):
     with st.spinner("Running pipeline..."):
 
         f1 = load_excel(file1, sheet1)
-        f2 = load_excel(file2)
+        f2 = load_excel(file2,sheet2)
         f3 = load_excel(file3, sheet3)
         f4 = load_excel(file4, sheet4)
         f5 = load_excel(file5, sheet5)
