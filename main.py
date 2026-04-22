@@ -303,6 +303,24 @@ if st.session_state.get("mapping_done"):
         merged.drop(columns=["X"], errors="ignore", inplace=True)
         merged = merged.drop_duplicates("Leadid")
         merged.rename(columns={"Status": "CRT"}, inplace=True)
+
+        # =========================
+        # FINAL SALES OVERRIDE (ROBUST)
+        # =========================
+        type_clean = (
+            merged["Type"]
+            .astype(str)
+            .str.lower()
+            .str.strip()
+            .str.replace(r"\s+", " ", regex=True)  # remove extra spaces
+        )
+
+        mask = type_clean.isin([
+            "pending with sales",
+            "cj pending with sales"
+        ])
+
+        merged.loc[mask, "Team"] = "Sales"
         # =========================
         # OUTPUT
         # =========================
