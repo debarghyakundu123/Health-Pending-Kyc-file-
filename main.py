@@ -267,9 +267,10 @@ if st.session_state.get("mapping_done"):
         merged["Tech"] = merged["Leadid"].map(f3.set_index("Leadid")["New Remarks"]).fillna("-")
         merged["sales"] = merged["Leadid"].map(f3.set_index("Leadid")["Pendency on"]).fillna("-")
 
+        # TECH 
         # TECH REVERT
-        mask = merged["sales"].str.lower().str.contains("crt|data push", na=False)
-        merged.loc[mask,["Type","Team"]] = ["Tech Reverted","CRT"]
+        mask = merged["sales"].str.lower().str.contains(r"\bcrt\b|data.*push", na=False)
+        merged.loc[mask, ["Type", "Team"]] = ["Tech Reverted", "CRT"]
 
         # FILE 1
         merged["sales"] = merged["Leadid"].map(f1.set_index("Leadid")["Remarks"])
