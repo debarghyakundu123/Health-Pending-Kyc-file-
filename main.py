@@ -272,6 +272,48 @@ if st.session_state.get("mapping_done"):
         mask = merged["sales"].str.lower().str.contains(r"\bcrt\b|data.*push", na=False)
         merged.loc[mask, ["Type", "Team"]] = ["Tech Reverted", "CRT"]
 
+        # =========================
+        # TECH REVERT DOWNLOAD (SEPARATE FILE)
+        # =========================
+        tech_revert_df = merged.loc[
+            merged["Type"] == "Tech Reverted",
+            ["Leadid", "Tech"]
+        ].copy()
+
+        # Rename for clarity
+        tech_revert_df.rename(columns={"Tech": "Tech Remarks"}, inplace=True)
+
+        # ✅ Keep only UNIQUE Lead IDs
+        tech_revert_df = tech_revert_df.drop_duplicates(subset=["Leadid"])
+
+        # ✅ Count of leads
+        lead_count = tech_revert_df["Leadid"].nunique()
+
+        # =========================
+        # DISPLAY + DOWNLOAD
+        # =========================
+        if not tech_revert_df.empty:
+            
+            # Show count in UI
+            st.success(f"Total Tech Reverted Unique Leads: {lead_count}")
+            
+            tech_file = "Tech_Reverted.xlsx"
+            tech_revert_df.to_excel(tech_file, index=False)
+
+            with open(tech_file, "rb") as f:
+                st.download_button(
+                    "⬇ Download Tech Reverted File",
+                    f,
+                    tech_file
+                )
+
+            # Optional preview
+            st.dataframe(tech_revert_df)
+
+        else:
+            st.info("No Tech Reverted records found.")
+
+        
         # FILE 1
         merged["sales"] = merged["Leadid"].map(f1.set_index("Leadid")["Remarks"])
         merged["X"] = merged["Leadid"].map(f1.set_index("Leadid")["Status.1"])
